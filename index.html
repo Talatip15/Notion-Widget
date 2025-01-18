@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Countdown</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .countdown {
+      text-align: center;
+      color: #fff;
+    }
+
+    .countdown span {
+      font-size: 4rem;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 120px;
+      margin: 0;
+      background-color: #000;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <span id="days">0</span>
+    <div class="label">Days</div>
+  </div>
+
+  <script>
+    // Set the target date
+    const targetDate = new Date('2025-05-15T00:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().setHours(0, 0, 0, 0); // Ensure only day-wise updates
+      const timeLeft = targetDate - now;
+
+      const days = Math.max(Math.floor(timeLeft / (1000 * 60 * 60 * 24)), 0);
+
+      document.getElementById('days').innerText = days;
+    }
+
+    // Update countdown daily
+    updateCountdown();
+    setInterval(updateCountdown, 24 * 60 * 60 * 1000); // Update every day
+  </script>
+</body>
+</html>
